@@ -9,15 +9,12 @@ import numpy as np
 import cv2
 
 # Keras
-from keras.applications.imagenet_utils import preprocess_input, decode_predictions
 from keras.models import load_model
 from keras.preprocessing import image
-import tensorflow as tf
 
 # Flask utils
-from flask import Flask, redirect, url_for, request, render_template
+from flask import Flask, request, render_template
 from werkzeug.utils import secure_filename
-from gevent.pywsgi import WSGIServer
 
 # Define a flask app
 app = Flask(__name__)
@@ -33,7 +30,6 @@ model = load_model(MODEL_PATH)
 print('Model loaded. Check http://127.0.0.1:5000/')
 folders = glob('dataset\data\Wonders of World\Wonders of World\*')
 
-print(folders)
 def model_predict(img_path, model):
     img = cv2.imread(img_path,cv2.IMREAD_GRAYSCALE)
     img = cv2.resize(img, dsize=(150,150))
@@ -88,5 +84,5 @@ def upload():
     return None
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__=='__main__':
+    app.run(host='127.0.0.1', port=5000)
