@@ -1,1 +1,1 @@
-web: qunicorn - bind 127.0.0.1:500 app:app
+web: gunicom <heritage_classification>:<app.py>
